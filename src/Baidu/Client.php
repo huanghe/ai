@@ -19,7 +19,7 @@ class Client extends BaseClient
     /**
      * @var string
      */
-    protected $baseUri = 'https://aip.baidubce.com/rest/2.0/ocr/v1/';
+    protected $baseUri = 'https://aip.baidubce.com/rest/2.0/';
 
     /**
      *  author:HAHAXIXI

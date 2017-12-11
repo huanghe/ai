@@ -23,11 +23,15 @@ class Ocr
      */
     protected $endPoint;
     /**
+     * @var string
+     */
+    protected $versionUrl = 'ocr/v1/';
+    /**
      * @var : data的参数
      */
     protected $params;
     /**
-     * @var string
+     * @var string,表格文字识别目前暂时不支持
      */
     private $tableResultEndPoint = 'form_ocr/request';
 
@@ -115,11 +119,11 @@ class Ocr
      */
     public function select($param = 'idcard')
     {
-        $allowOcrType = require __DIR__ . '/OcrType.php';
+        $allowOcrType = require __DIR__ . '/SupportType.php';
         if (!in_array($param, $allowOcrType)) {
             throw new InvalidArgumentException('invalid argument:' . $param);
         }
-        $this->endPoint = $param;
+        $this->endPoint = $this->versionUrl . $param;
         return $this;
     }
 

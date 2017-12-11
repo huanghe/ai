@@ -23,5 +23,6 @@ class Application extends ServiceContainer
     protected $providers = [
         Auth\ServiceProvider::class,
         Ocr\ServiceProvider::class,
+        Face\ServiceProvider::class,
     ];
 }
