@@ -1,4 +1,5 @@
 <?php
+namespace AI\Tests;
 
 use AI\Entry;
 
@@ -9,7 +10,7 @@ use AI\Entry;
  * Date: 2017/11/22
  * Time: 19:17
  */
-class AITest extends PHPUnit_Framework_TestCase
+class AITest extends \PHPUnit_Framework_TestCase
 {
     public function testIceInit()
     {

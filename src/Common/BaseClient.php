@@ -31,7 +31,7 @@ class BaseClient
     /**
      * @var \AI\Common\Contracts\AccessTokenInterface
      */
-    protected $accessToken;
+    protected $accessToken = false;
 
     /**
      * @var
@@ -47,7 +47,13 @@ class BaseClient
     public function __construct(ServiceContainer $app, AccessTokenInterface $accessToken = null)
     {
         $this->app = $app;
-        $this->accessToken = isset($accessToken) ? $accessToken : $this->app['access_token'];
+
+        if(isset($this->app['access_token'])){//查找是否注入了access_token对象
+            $this->accessToken = $this->app['access_token'];
+        }
+        if($accessToken !== null){//查找是否传入了access_token对象
+            $this->accessToken = $accessToken;
+        }
     }
 
     /**
@@ -191,7 +197,9 @@ class BaseClient
         // retry
         $this->pushMiddleware($this->retryMiddleware(), 'retry');
         // access token
-        $this->pushMiddleware($this->accessTokenMiddleware(), 'access_token');
+        if($this->accessToken !== false){
+            $this->pushMiddleware($this->accessTokenMiddleware(), 'access_token');
+        }
         // log
         $this->pushMiddleware($this->logMiddleware(), 'log');
     }
