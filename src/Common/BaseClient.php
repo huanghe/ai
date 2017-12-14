@@ -48,10 +48,10 @@ class BaseClient
     {
         $this->app = $app;
 
-        if(isset($this->app['access_token'])){//查找是否注入了access_token对象
+        if (isset($this->app['access_token'])) {//查找是否注入了access_token对象
             $this->accessToken = $this->app['access_token'];
         }
-        if($accessToken !== null){//查找是否传入了access_token对象
+        if ($accessToken !== null) {//查找是否传入了access_token对象
             $this->accessToken = $accessToken;
         }
     }
@@ -87,13 +87,14 @@ class BaseClient
      *
      * @param string $url
      * @param string|array $data
+     * @param array $headers
      * @param array $query
      *
      * @return \Psr\Http\Message\ResponseInterface|\AI\Common\Tool\Collection|array|object|string
      */
-    public function httpPostJson($url, array $data = [], array $query = [])
+    public function httpPostJson($url, array $data = [], array $headers = [], array $query = [])
     {
-        return $this->request($url, 'POST', ['query' => $query, 'json' => $data]);
+        return $this->request($url, 'POST', ['query' => $query, 'json' => $data, 'headers' => $headers]);
     }
 
     /**
@@ -197,7 +198,7 @@ class BaseClient
         // retry
         $this->pushMiddleware($this->retryMiddleware(), 'retry');
         // access token
-        if($this->accessToken !== false){
+        if ($this->accessToken !== false) {
             $this->pushMiddleware($this->accessTokenMiddleware(), 'access_token');
         }
         // log

@@ -171,7 +171,7 @@ class Face
     public function get()
     {
         $this->validate($this->endPoint);
-        $this->client->post($this->endPoint, $this->params);
+        return  $this->client->post($this->endPoint, $this->params);
     }
 
     /**

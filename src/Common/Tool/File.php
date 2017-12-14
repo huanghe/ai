@@ -125,4 +125,21 @@ class File
 
         return '';
     }
+    /**
+     *  author:HAHAXIXI
+     *  created_at: 2017-12-
+     *  updated_at: 2017-12-
+     * @param $imagePath
+     * @return string
+     * @throws \AI\Common\Exceptions\InvalidArgumentException
+     *  desc   :    base64编码对应路径的文件
+     */
+    public static function base64LocalImage($imagePath)
+    {
+        $realImagePath = realpath($imagePath);
+        if (!file_exists($realImagePath)) {
+            throw new \AI\Common\Exceptions\InvalidArgumentException('file ' . $imagePath . ' not exists');
+        }
+        return base64_encode(file_get_contents($realImagePath));
+    }
 }

@@ -106,7 +106,7 @@ class Ocr
     public function get()
     {
         $this->validate();
-        $this->client->post($this->endPoint, $this->params);
+        return $this->client->post($this->endPoint, $this->params);
     }
 
     /**

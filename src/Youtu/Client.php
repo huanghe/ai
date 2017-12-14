@@ -32,14 +32,31 @@ class Client extends BaseClient
      *  updated_at: 2017-12-
      * @param $url
      * @param array $data
-     * @param array $params
-     * @param array $headers
      * @return \AI\Common\Tool\Collection|array|object|\Psr\Http\Message\ResponseInterface|string
      *  desc   :
      */
-    public function post($url, $data = [], $params = [], $headers = [])
+    public function post($url, $data = [])
     {
-        return $this->httpPost($url, $data);
+        $data['app_id'] = $this->app['config']['youtu']['app_id'];
+        $headers = $this->getHeader('POST');
+        return $this->httpPostJson($url, $data, $headers);
+    }
+
+    /**
+     *  author:HAHAXIXI
+     *  created_at: 2017-12-12
+     *  updated_at: 2017-12-
+     * @return array
+     *  desc   :设置头部及签名
+     */
+    private function getHeader($method)
+    {
+        return [
+            'Authorization' => Auth::appSign($this->app['config']['youtu']['app_id'], $this->app['config']['youtu']['secret_id'], $this->app['config']['youtu']['secret_key'], $this->app['config']['youtu']['user_id']),
+            'Content-Type' => 'text/json',
+            'Expect' => '',
+            'Method' => $method,
+        ];
     }
 
     /**
