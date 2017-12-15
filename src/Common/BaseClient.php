@@ -230,7 +230,8 @@ class BaseClient
      */
     protected function logMiddleware()
     {
-        $formatter = new MessageFormatter(isset($this->app['config']['http.log_template']) ? $this->app['config']['http.log_template'] : MessageFormatter::DEBUG);
+        //没有设置日志默认设置response和error
+        $formatter = new MessageFormatter(isset($this->app['config']['http.log_template']) ? $this->app['config']['http.log_template'] : "<<<<<<<<\n{response}\n--------\n{error}");
 
         return Middleware::log($this->app['logger'], $formatter);
     }
@@ -252,7 +253,7 @@ class BaseClient
                 // Retry on server errors
                 $response = json_decode($body, true);
 
-                if (!empty($response['errcode']) && in_array(abs($response['errcode']), [40001, 42001], true)) {
+                if ($this->accessToken !== false && isset($response['error'])) {//需要token并且返回错误的情况下，error为百度返回的错误码
                     $this->accessToken->refresh();
                     $this->app['logger']->debug('Retrying with refreshed access token.');
 

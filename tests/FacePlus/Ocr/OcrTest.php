@@ -17,7 +17,7 @@ class OcrTest extends \PHPUnit_Framework_TestCase
     public function __construct($name = null, array $data = array(), $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->config = require __DIR__ . '/../../config/face_plus.php';
+        $this->config = require __DIR__ . '/../../config/ai.php';
     }
 
     //vendor/phpunit/phpunit/phpunit --testdox tests/FacePlus/Ocr/OcrTest.php
