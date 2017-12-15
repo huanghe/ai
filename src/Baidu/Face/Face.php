@@ -33,10 +33,6 @@ class Face
      * @var : data的参数
      */
     protected $params;
-    /**
-     * @var string,表格文字识别目前暂时不支持
-     */
-    private $tableResultEndPoint = 'form_ocr/request';
 
     public function __construct($app)
     {
