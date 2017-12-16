@@ -1,8 +1,8 @@
 ## Support platform
 
-1.百度AI开放平台:https://ai.baidu.com/
-2.腾讯优图AI开放平台:https://open.youtu.qq.com
-3.Face++人工智能开放平台:https://www.faceplusplus.com.cn/
+ 1.百度AI开放平台:https://ai.baidu.com/
+ 2.腾讯优图AI开放平台:https://open.youtu.qq.com
+ 3.Face++人工智能开放平台:https://www.faceplusplus.com.cn/
 
 ```
 ## Feature
