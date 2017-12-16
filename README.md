@@ -1,22 +1,18 @@
-## Installation
+## Support platform
 
-1. Install via git
-```shell
-git clone git@github.com:huanghe/ai.git
-```
-2. Install require
-
-```shell
-
-cd ./AI
-
-composer install
+1.百度AI开放平台:https://ai.baidu.com/
+2.腾讯优图AI开放平台:https://open.youtu.qq.com
+3.Face++人工智能开放平台:https://www.faceplusplus.com.cn/
 
 ```
 ## Feature
 
  - 统一主流AI平台SDK调用方法；
  - 像查询数据库一样优雅调用API；
+
+## Installation
+
+composer require hahaxixi/ai
 
 ## Usage
 

@@ -26,6 +26,26 @@ class Face
      */
     protected $versionUrl = 'face/v2/';
     /**
+     * @var array
+     */
+    protected $versionApi_1 = [
+        'add', 'update', 'delete', 'get',
+    ];
+    /**
+     * @var string 第二路由
+     */
+    protected $versionUrl_1 = 'face/v2/faceset/user/';
+    /**
+     * @var array
+     */
+    protected $versionApi_2 = [
+        'getlist', 'getusers', 'adduser', 'deleteuser'
+    ];
+    /**
+     * @var string 第三路由,人脸组
+     */
+    protected $versionUrl_2 = 'face/v2/faceset/group/';
+    /**
      * @var string 人脸对比url后缀
      */
     private $matchEndPoint = 'match';
@@ -167,7 +187,7 @@ class Face
     public function get()
     {
         $this->validate($this->endPoint);
-        return  $this->client->post($this->endPoint, $this->params);
+        return $this->client->post($this->endPoint, $this->params);
     }
 
     /**
@@ -184,7 +204,14 @@ class Face
         if (!in_array($param, $allowOcrType)) {
             throw new InvalidArgumentException('invalid argument:' . $param);
         }
-        $this->endPoint = $this->versionUrl . $param;
+        if (in_array($param, $this->versionApi_1)) {
+            $versionUrl = $this->versionUrl_1;
+        } elseif (in_array($param, $this->versionApi_2)) {
+            $versionUrl = $this->versionUrl_2;
+        } else {
+            $versionUrl = $this->versionUrl;
+        }
+        $this->endPoint = $versionUrl . $param;
         return $this;
     }
 
