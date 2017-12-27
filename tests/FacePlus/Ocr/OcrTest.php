@@ -14,6 +14,12 @@ class OcrTest extends \PHPUnit_Framework_TestCase
 {
     public $config;
 
+    /**
+     * OcrTest constructor.
+     * @param null $name
+     * @param array $data
+     * @param string $dataName
+     */
     public function __construct($name = null, array $data = array(), $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
@@ -27,69 +33,54 @@ class OcrTest extends \PHPUnit_Framework_TestCase
      *  author:HAHAXIXI
      *  created_at: 2017-12-13
      *  updated_at: 2017-12-
-     *  desc   :    名片
+     *  desc   :    检测和识别中华人民共和国第二代身份证的关键字段内容
      */
-//    public function testBc(){
-//        $result = Entry::FacePlus($this->config)->ocr->select('bcocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_namecard_02.jpg'])->get();//身份证
-//        var_dump($result);
-//        exit;
-//    }
+    public function testIdCard(){
+        //image_url,图片的URL
+        //image_file,一个图片，二进制文件
+        //image_base64,base64编码的二进制图片数据
+        $result = Entry::FacePlus($this->config)->ocr->select('ocridcard')->where(['image_url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_namecard_02.jpg'])->get();//身份证
+        var_dump($result);
+        exit;
+    }
+
+
+
     /**
      *  author:HAHAXIXI
-     *  created_at: 2017-12-
+     *  created_at: 2017-12-29
      *  updated_at: 2017-12-
-     *  desc   :    通用
+     *  desc   :    检测和识别中华人民共和国机动车驾驶证，目前只支持驾照主页正面
      */
-    public function testGeneral()
+    public function testOcrdriverlicense()
     {
         return true;
-        $result = Entry::FacePlus($this->config)->ocr->select('generalocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_common07.jpg'])->get();//通用
+        $result = Entry::FacePlus($this->config)->ocr->select('ocrdriverlicense')->where(['image_url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_license_1.jpg'])->get();//银行卡
         var_dump($result);
-
+    }
+    /**
+     *  author:HAHAXIXI
+     *  created_at: 2017-12-29
+     *  updated_at: 2017-12-
+     *  desc   :    检测和识别中华人民共和国机动车行驶证
+     */
+    public function testoOrvehiclelicense()
+    {
+        return true;
+        $result = Entry::FacePlus($this->config)->ocr->select('ocrvehiclelicense')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_license_1.jpg'])->get();//银行卡
+        var_dump($result);
     }
 
     /**
      *  author:HAHAXIXI
-     *  created_at: 2017-12-
-     *  updated_at: 2017-12-
-     *  desc   :营业执照
-     */
-    public function testBizlicenseocr()
-    {
-        return true;
-        $result = Entry::FacePlus($this->config)->ocr->select('bizlicenseocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_yyzz_01.jpg'])->get();//通用
-        var_dump($result);
-    }
-
-    /**
-     *  author:HAHAXIXI
-     *  created_at: 2017-12-
+     *  created_at: 2017-12-29
      *  updated_at: 2017-12-
      *  desc   :    银行卡
      */
-    public function testCreditcardocr()
+    public function testOcrbankcard()
     {
         return true;
-        $result = Entry::FacePlus($this->config)->ocr->select('creditcardocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_card_1.jpg'])->get();//银行卡
-        var_dump($result);
-    }
-
-    /**
-     *  author:HAHAXIXI
-     *  created_at: 2017-12-13
-     *  updated_at: 2017-12-
-     *  desc   :    车牌
-     */
-    public function testPlateocr()
-    {
-        return true;
-        $result = Entry::FacePlus($this->config)->ocr->select('plateocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_license_1.jpg'])->get();//银行卡
-        var_dump($result);
-    }
-
-    public function testDriverlicenseocr()
-    {
-        $result = Entry::FacePlus($this->config)->ocr->select('driverlicenseocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_jsz_01.jpg', 'type' => 1])->get();//驾驶证
+        $result = Entry::FacePlus($this->config)->ocr->select('ocrbankcard')->where(['image_url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_card_1.jpg'])->get();//银行卡
         var_dump($result);
     }
 }
