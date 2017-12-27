@@ -26,7 +26,7 @@ class Image
      * @var array
      */
     protected $backVersionApi = [
-        'detectsceneandobject',
+        'detectsceneandobject',//调用者提供图片文件或者图片URL，进行图片分析，识别图片场景和图片主体。
     ];
     /**
      * @var string 第二路由

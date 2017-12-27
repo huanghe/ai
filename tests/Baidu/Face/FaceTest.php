@@ -16,9 +16,10 @@ class FaceTest extends \PHPUnit_Framework_TestCase
     public function testGet()
     {
         $config = require __DIR__ . '/../../config/ai.php';
-        $result = Entry::Baidu($config)->face->select('detect')->where(['image' => file_get_contents(__DIR__ . '/../../file/face_detect.jpeg'), 'id_card_side' => 'front'])->get();//身份证
+//        $result = Entry::Baidu($config)->face->select('add')->where(['image' => file_get_contents(__DIR__ . '/../../file/face_detect.jpeg'), 'uid' => 'u001', 'user_info' => 'hahaxixi', 'group_id' => '1234'])->get();//身份证
+        $result = Entry::Baidu($config)->face->select('getlist')->where(['image' => file_get_contents(__DIR__ . '/../../file/face_detect.jpeg'), 'uid' => 'u001'])->get();//身份证
 
-//        var_dump($result);
-//        exit;
+        var_dump($result);
+        exit;
     }
 }

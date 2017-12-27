@@ -23,6 +23,12 @@ class Face
     /**
      * @var array
      */
-    protected $backVersionApi = [];
+    protected $backVersionApi = [
+        'create', 'addface', 'removeface', 'update', 'getdetail', 'delete', 'getfacesets',
+    ];
+    /**
+     * @var string 第二路由
+     */
+    protected $backVersionUrl = 'facepp/v3/faceset/';
 
 }
