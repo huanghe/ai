@@ -41,8 +41,8 @@ class Client extends BaseClient
         $data['api_secret'] = $this->app['config']['face_plus']['api_secret'];
         $intersectData = array_intersect_key($data, $this->fileKey);
         if (!empty($intersectData)) {//使用post multipart/form-data的方式上传
-            $newData = array_diff_key($data, $intersectData);
-            return $this->httpUpload($url, $intersectData, $newData);
+            $textData = array_diff_key($data, $intersectData);
+            return $this->httpUpload($url, $intersectData, $textData);
         } else {
             return $this->httpPost($url, $data);
         }

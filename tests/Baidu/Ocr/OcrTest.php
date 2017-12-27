@@ -2,6 +2,7 @@
 namespace AI\Tests\Baidu\Ocr;
 
 use AI\Entry;
+
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
@@ -13,8 +14,10 @@ class OcrTest extends \PHPUnit_Framework_TestCase
     //vendor/phpunit/phpunit/phpunit --testdox tests/Baidu/Ocr/OcrTest.php
     public function testGet()
     {
-        $config = require __DIR__.'/../../config/ai.php';
-        $result = Entry::Baidu($config)->ocr->select('idcard')->where(['image' => file_get_contents(__DIR__ . '/../../file/idcard_02.jpg'), 'id_card_side' => 'front'])->get();//身份证
+        $config = require __DIR__ . '/../../config/ai.php';
+        $result = Entry::Baidu($config)->ocr->select('accurate_basic')->where(['image' => file_get_contents(__DIR__ . '/../../file/ocr_txt001.jpg')])->get();//通用
+
+        // $result = Entry::Baidu($config)->ocr->select('idcard')->where(['image' => file_get_contents(__DIR__ . '/../../file/idcard_02.jpg'), 'id_card_side' => 'front'])->get();//身份证
         var_dump($result);exit;
         return $result;
 //        $result = Entry::Baidu($config)->ocr->select('receipt')->where(['image' => file_get_contents(__DIR__ . '/../../file/demo-receipt-1.jpg'), 'id_card_side' => 'front'])->get();//票据

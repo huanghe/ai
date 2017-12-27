@@ -1,3 +1,5 @@
+## 开发文档
+ http://blog.hahaxixi.cc/2017/12/27/AI-API/
 ## Support platform
 
  1.百度AI开放平台:https://ai.baidu.com/

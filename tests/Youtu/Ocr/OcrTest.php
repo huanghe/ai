@@ -9,6 +9,9 @@ use AI\Entry;
  * User: hahaxixi2017
  * Date: 2017/12/8
  * Time: 15:56
+ * 直接调用方法： vendor/phpunit/phpunit/phpunit --testdox tests/Youtu/Ocr/OcrTest.php
+ * 参数image为图片本地地址
+ * url为图片网络地址
  */
 class OcrTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,14 +23,20 @@ class OcrTest extends \PHPUnit_Framework_TestCase
         $this->config = require __DIR__ . '/../../config/ai.php';
     }
 
-    //vendor/phpunit/phpunit/phpunit --testdox tests/Youtu/Ocr/OcrTest.php
-//    public function testGet()
-//    {
-//        $result = Entry::Youtu($this->config)->ocr->select('idcardocr')->where(['image' => __DIR__ . '/../../file/idcard_02.jpg', 'seq' => '', 'card_type' => 0])->get();//身份证
-////        $result = Entry::Youtu($config)->ocr->select('idcardocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_id_01.jpg', 'seq' => '', 'card_type' => 0])->get();//身份证
-//        var_dump($result);
-//        exit;
-//    }
+    /**
+     *  author:HAHAXIXI
+     *  created_at: 2017-12-
+     *  updated_at: 2017-12-
+     *  desc   :    身份证
+     */
+    public function testIdcardocr()
+    {
+//        return true;
+        $result = Entry::Youtu($this->config)->ocr->select('idcardocr')->where(['image' => __DIR__ . '/../../file/idcard_02.jpg', 'seq' => '', 'card_type' => 0])->get();//身份证
+//        $result = Entry::Youtu($config)->ocr->select('idcardocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_id_01.jpg', 'seq' => '', 'card_type' => 0])->get();//身份证
+        var_dump($result);
+        exit;
+    }
 
     /**
      *  author:HAHAXIXI
@@ -44,13 +53,15 @@ class OcrTest extends \PHPUnit_Framework_TestCase
      *  author:HAHAXIXI
      *  created_at: 2017-12-
      *  updated_at: 2017-12-
-     *  desc   :    通用
+     *  desc   :    通用文字识别
      */
     public function testGeneral()
     {
-        return true;
-        $result = Entry::Youtu($this->config)->ocr->select('generalocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_common07.jpg'])->get();//通用
+//        return true;
+        $result = Entry::Youtu($this->config)->ocr->select('generalocr')->where(['image' => __DIR__ . '/../../file/ocr_txt001.jpg'])->get();//通用
+//        $result = Entry::Youtu($this->config)->ocr->select('generalocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_common07.jpg'])->get();//通用
         var_dump($result);
+        exit;
 
     }
 
@@ -95,6 +106,7 @@ class OcrTest extends \PHPUnit_Framework_TestCase
 
     public function testDriverlicenseocr()
     {
+        return true;
         $result = Entry::Youtu($this->config)->ocr->select('driverlicenseocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_jsz_01.jpg', 'type' => 1])->get();//驾驶证
         var_dump($result);
     }
