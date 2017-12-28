@@ -158,7 +158,6 @@ class BaseClient
         if (empty($this->middlewares)) {
             $this->registerHttpMiddlewares();
         }
-
         $response = $this->performRequest($url, $method, $options);
 
         return $returnRaw ? $response : $this->resolveResponse($response, $this->app->config->get('response_type', 'array'));

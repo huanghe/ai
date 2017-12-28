@@ -52,14 +52,10 @@ class Ocr
         if ($this->endPoint === $this->tableResultEndPoint) {
             return true;
         }
-
         // 支持url
-        if (preg_match('/^\w{1,128}:\/\//', $this->params['image'])) {
-            $this->params['url'] = $this->params['image'];
-            unset($this->params['image']);
+        if (isset($this->params['url'])) {
             return true;
         }
-
         $imageInfo = self::getImageInfo($this->params['image']);
 
         //图片格式检查
@@ -78,7 +74,6 @@ class Ocr
         if (strlen($this->params['image']) >= 4 * 1024 * 1024) {
             throw new InvalidArgumentException('image size error');//SDK100
         }
-
         return true;
     }
 
