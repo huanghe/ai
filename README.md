@@ -1,12 +1,12 @@
 ## 开发文档
- http://blog.hahaxixi.cc/2017/12/27/AI-API/
+ [开发文档](http://blog.hahaxixi.cc/2017/12/27/AI-API/)
 ## Support platform
 
- 1.百度AI开放平台:https://ai.baidu.com/
+ 1.[百度AI开放平台](http://ai.baidu.com)
 
- 2.腾讯优图AI开放平台:https://open.youtu.qq.com
+ 2.[腾讯AI开放平台](https://open.youtu.qq.com)
 
- 3.Face++人工智能开放平台:https://www.faceplusplus.com.cn/
+ 3.[FACE++AI开放平台](https://www.faceplusplus.com.cn)
 
 ```
 ## Feature
@@ -50,4 +50,4 @@ $result = Entry::Youtu($config)->face->select('detectface')->where(['url' => 'ht
 ```
 ## License
 
-Apache License Version 2.0 see http://www.apache.org/licenses/LICENSE-2.0.html
+Apache License Version 2.0 see [Apache License](http://www.apache.org/licenses/LICENSE-2.0.html)
