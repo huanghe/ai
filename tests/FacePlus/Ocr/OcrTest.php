@@ -9,6 +9,7 @@ use AI\Entry;
  * User: hahaxixi2017
  * Date: 2017/12/8
  * Time: 15:56
+ * 调用方法：vendor/phpunit/phpunit/phpunit --testdox tests/FacePlus/Ocr/OcrTest.php
  */
 class OcrTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,24 +27,22 @@ class OcrTest extends \PHPUnit_Framework_TestCase
         $this->config = require __DIR__ . '/../../config/ai.php';
     }
 
-    //vendor/phpunit/phpunit/phpunit --testdox tests/FacePlus/Ocr/OcrTest.php
-
-
     /**
      *  author:HAHAXIXI
      *  created_at: 2017-12-13
      *  updated_at: 2017-12-
      *  desc   :    检测和识别中华人民共和国第二代身份证的关键字段内容
      */
-    public function testIdCard(){
+    public function testIdCard()
+    {
         //image_url,图片的URL
         //image_file,一个图片，二进制文件
         //image_base64,base64编码的二进制图片数据
+        return true;
         $result = Entry::FacePlus($this->config)->ocr->select('ocridcard')->where(['image_url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_namecard_02.jpg'])->get();//身份证
         var_dump($result);
         exit;
     }
-
 
 
     /**
@@ -54,10 +53,12 @@ class OcrTest extends \PHPUnit_Framework_TestCase
      */
     public function testOcrdriverlicense()
     {
-        return true;
-        $result = Entry::FacePlus($this->config)->ocr->select('ocrdriverlicense')->where(['image_url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_license_1.jpg'])->get();//银行卡
+//        return true;
+        $result = Entry::FacePlus($this->config)->ocr->select('ocrdriverlicense')->where(['image_url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_jsz_01.jpg'])->get();//驾驶证
         var_dump($result);
+        exit;
     }
+
     /**
      *  author:HAHAXIXI
      *  created_at: 2017-12-29
@@ -67,7 +68,7 @@ class OcrTest extends \PHPUnit_Framework_TestCase
     public function testoOrvehiclelicense()
     {
         return true;
-        $result = Entry::FacePlus($this->config)->ocr->select('ocrvehiclelicense')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_license_1.jpg'])->get();//银行卡
+        $result = Entry::FacePlus($this->config)->ocr->select('ocrvehiclelicense')->where(['image_url' => 'http://open.youtu.qq.com/app/img/experience/char_general/icon_ocr_xsz_02.jpg'])->get();//行驶证
         var_dump($result);
     }
 

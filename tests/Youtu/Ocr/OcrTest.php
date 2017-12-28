@@ -31,7 +31,7 @@ class OcrTest extends \PHPUnit_Framework_TestCase
      */
     public function testIdcardocr()
     {
-//        return true;
+        return true;
         $result = Entry::Youtu($this->config)->ocr->select('idcardocr')->where(['image' => __DIR__ . '/../../file/idcard_02.jpg', 'seq' => '', 'card_type' => 0])->get();//身份证
 //        $result = Entry::Youtu($config)->ocr->select('idcardocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_id_01.jpg', 'seq' => '', 'card_type' => 0])->get();//身份证
         var_dump($result);
@@ -58,8 +58,8 @@ class OcrTest extends \PHPUnit_Framework_TestCase
     public function testGeneral()
     {
 //        return true;
-        $result = Entry::Youtu($this->config)->ocr->select('generalocr')->where(['image' => __DIR__ . '/../../file/ocr_txt001.jpg'])->get();//通用
-//        $result = Entry::Youtu($this->config)->ocr->select('generalocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_common07.jpg'])->get();//通用
+//        $result = Entry::Youtu($this->config)->ocr->select('generalocr')->where(['image' => __DIR__ . '/../../file/general.png'])->get();//通用
+        $result = Entry::Youtu($this->config)->ocr->select('generalocr')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/char_general/ocr_common07.jpg'])->get();//通用
         var_dump($result);
         exit;
 
