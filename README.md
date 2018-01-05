@@ -45,35 +45,6 @@
 4. 在命令行下进入根目录,执行命令,比如测试腾讯优图人脸识别：
 `vendor/phpunit/phpunit/phpunit --testdox tests/Youtu/Face/FaceTest.php`
 
-## SimpleTest
-
-1. [下载zip包](https://github.com/huanghe/ai/archive/master.zip) 或者clone本项目
-2. 进入本项目根目录，执行`composer install`,（[不知道composer,点此了解PHP包管理工具composer](https://getcomposer.org/)）
-3. 在项目目录`tests->config`下面添加配置文件`ai.php`（需要自己到各平台注册获取试用账号）,内容如：
-	
-	```php
-	return [
-	    'baidu' => [
-	        'app_id' => '***',
-	        'app_key' => '***',
-	        'secret_key' => '***',
-	    ],
-	    'youtu' => [
-	         'app_id' => '***',
-	         'secret_id' => '***',
-	         'secret_key' => '***',
-	         'user_id' => ****
-	    ]
-	    'face_plus' => [
-	         'api_key' => '***',
-	         'api_secret' => '***',
-	    ],
-	];
-
-	```
-
-4. 在命令行执行命令,比如测试腾讯优图人脸识别：
-`vendor/phpunit/phpunit/phpunit --testdox tests/Youtu/Face/FaceTest.php`
 
 ## Installation
 
