@@ -14,7 +14,7 @@ class Entry
      *
      * @return \AI\Common\ServiceContainer
      */
-    public function Init($name, array $config)
+    public static function Init($name, array $config)
     {
         $namespace = Common\Tool\Str::studly($name);
         $application = "\\AI\\{$namespace}\\Application";
