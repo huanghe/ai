@@ -1,12 +1,16 @@
+## Recent Test
+- 所有API在2018-10-11通过测试
 ## Develop documents
 <a href="http://blog.hahaxixi.cc/2017/12/27/AI-API/" target="_blank">开发文档</a>
-
 ## Feature
 
-- 统一主流AI平台SDK调用方法；
+- 统一AI平台SDK调用方法；
 - 像查询数据库一样优雅调用API；
 
-## Support platform
+## Design Concept（设计理念）
+- 为节约开发者学习成本，所传参数和原平台开发文档保持一致
+
+## Support platform(支持的平台)
 
  1.<a href="http://ai.baidu.com" target="_blank">百度AI开放平台</a>
 
@@ -18,7 +22,7 @@
 ## SimpleTest
 
 1. [下载zip包](https://github.com/huanghe/ai/archive/master.zip) 或者clone本项目
-2. 进入本项目根目录，执行`composer install`,（[不知道composer？点此了解PHP包管理工具composer](https://getcomposer.org/)）
+2. 进入本项目根目录，执行`composer install`,（[包管理工具composer](https://getcomposer.org/)）
 3. 在项目目录`tests->config`下面添加配置文件`ai.php`（需要自己到各平台注册获取试用账号）,内容如：
 	
 	```php
@@ -45,42 +49,12 @@
 4. 在命令行下进入根目录,执行命令,比如测试腾讯优图人脸识别：
 `vendor/phpunit/phpunit/phpunit --testdox tests/Youtu/Face/FaceTest.php`
 
-## SimpleTest
-
-1. [下载zip包](https://github.com/huanghe/ai/archive/master.zip) 或者clone本项目
-2. 进入本项目根目录，执行`composer install`,（[不知道composer,点此了解PHP包管理工具composer](https://getcomposer.org/)）
-3. 在项目目录`tests->config`下面添加配置文件`ai.php`（需要自己到各平台注册获取试用账号）,内容如：
-	
-	```php
-	return [
-	    'baidu' => [
-	        'app_id' => '***',
-	        'app_key' => '***',
-	        'secret_key' => '***',
-	    ],
-	    'youtu' => [
-	         'app_id' => '***',
-	         'secret_id' => '***',
-	         'secret_key' => '***',
-	         'user_id' => ****
-	    ]
-	    'face_plus' => [
-	         'api_key' => '***',
-	         'api_secret' => '***',
-	    ],
-	];
-
-	```
-
-4. 在命令行执行命令,比如测试腾讯优图人脸识别：
-`vendor/phpunit/phpunit/phpunit --testdox tests/Youtu/Face/FaceTest.php`
-
 ## Installation
 
 `composer require hahaxixi/ai`
 
 ## Usage
-
+1.一般使用
 ```php
 $config = [
     'baidu' => [
@@ -92,7 +66,7 @@ $config = [
          'app_id' => '***',
          'secret_id' => '***',
          'secret_key' => '***',
-         'user_id' => ****
+         'user_id' => '***'
     ]
     'face_plus' => [
          'api_key' => '***',
@@ -107,6 +81,14 @@ $result = Entry::Youtu($config)->face->select('detectface')->where(['url' => 'ht
 //face++
 $result =  Entry::FacePlus($config)->face->select('detect')->where(['image_file' =>__DIR__ . '/../../file/face_01.jpg' , 'return_attributes' => 'skinstatus'])->get();
 
+```
+
+2.Laravel框架使用
+
+- 项目目录`config`下面添加配置文件`ai.php`,配置内容和上文SimpleTest一致
+- 一行代码调用人脸检测示例
+```php
+$result = Entry::Baidu(config('ai'))->face->select('detect')->where(['image' => file_get_contents(__DIR__ . '/file/face_detect.jpeg'), 'id_card_side' => 'front'])->get();
 
 ```
 ## License
