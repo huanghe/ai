@@ -1,5 +1,5 @@
 ## Recent Test
-- 所有API在2018-10-11通过测试
+- 所有API在2018-01-11通过测试
 ## Develop documents
 <a href="http://blog.hahaxixi.cc/2017/12/27/AI-API/" target="_blank">开发文档</a>
 ## Feature
