@@ -6,8 +6,6 @@
 
 - 统一AI平台SDK调用方法；
 - 像查询数据库一样优雅调用API；
-
-## Design Concept（设计理念）
 - 所传参数和原平台开发文档保持一致，节约开发者学习成本
 
 ## Support platform(支持的平台)
