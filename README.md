@@ -25,6 +25,12 @@
 	
 	```php
 	return [
+        'debug' => true,
+        'log' => [
+            'level' => 'debug',
+            'file' => './tests/logs/ai.log',//日志相对路径
+            'template' => "<<<<<<<<\n{response}\n--------\n{error}",//日志模版
+        ],
 	    'baidu' => [
 	        'app_id' => '***',
 	        'app_key' => '***',
@@ -54,22 +60,10 @@
 ## Usage
 1.一般使用
 ```php
-$config = [
-    'baidu' => [
-        'app_id' => '***',
-        'app_key' => '***',
-        'secret_key' => '***',
-    ],
-    'youtu' => [
-         'app_id' => '***',
-         'secret_id' => '***',
-         'secret_key' => '***',
-         'user_id' => '***'
-    ]
-    'face_plus' => [
-         'api_key' => '***',
-         'api_secret' => '***',
-    ],
+$config = [    
+    'baidu' => [...],
+    'youtu' => [...],
+    'face_plus' => [...],
 ];
 
 //百度
@@ -77,7 +71,7 @@ $result = Entry::Baidu($config)->face->select('detect')->where(['image' => file_
 //腾讯优图
 $result = Entry::Youtu($config)->face->select('detectface')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/face_img/face_06.jpg', 'mode' => 1])->get();
 //face++
-$result =  Entry::FacePlus($config)->face->select('detect')->where(['image_file' =>__DIR__ . '/../../file/face_01.jpg' , 'return_attributes' => 'skinstatus'])->get();
+$result = Entry::FacePlus($config)->face->select('detect')->where(['image_file' =>__DIR__ . '/../../file/face_01.jpg' , 'return_attributes' => 'skinstatus'])->get();
 
 ```
 
