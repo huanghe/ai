@@ -75,7 +75,7 @@ $result = Entry::FacePlus($config)->face->select('detect')->where(['image_file' 
 
 ```
 
-2.Laravel框架使用
+2.Laravel使用
 
 - 项目目录`config`下面添加配置文件`ai.php`,配置内容和上文SimpleTest一致
 - 一行代码调用人脸检测示例
@@ -83,6 +83,23 @@ $result = Entry::FacePlus($config)->face->select('detect')->where(['image_file' 
 $result = Entry::Baidu(config('ai'))->face->select('detect')->where(['image' => file_get_contents(__DIR__ . '/file/face_detect.jpeg'), 'id_card_side' => 'front'])->get();
 
 ```
+
+3.Yii2使用
+
+- 在配置文件`params-local.php`添加
+```php
+	'ai'=>[
+        'face_plus' => [],
+        'baidu' => [],
+        'youtu' => [],
+    ],
+```
+- 一行代码调用人脸检测示例
+```php
+$result = Entry::Baidu(Yii::$app->params['ai')->face->select('detect')->where(['image' => file_get_contents(__DIR__ . '/file/face_detect.jpeg'), 'id_card_side' => 'front'])->get();
+
+```
+
 ## License
 
 Apache License Version 2.0 see [Apache License](http://www.apache.org/licenses/LICENSE-2.0.html)
