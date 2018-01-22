@@ -88,10 +88,10 @@ $result = Entry::Baidu(config('ai'))->face->select('detect')->where(['image' => 
 
 - 在配置文件`params-local.php`添加
 ```php
-	'ai'=>[
-        'face_plus' => [],
-        'baidu' => [],
-        'youtu' => [],
+    'ai'=>[
+        'face_plus' => [...],
+        'baidu' => [...],
+        'youtu' => [...],
     ],
 ```
 - 一行代码调用人脸检测示例
