@@ -60,7 +60,8 @@
 ## Usage
 1.一般使用
 ```php
-$config = [    
+$config = [
+    'log' => [...],//如，laravel:'file' => storage_path('logs/ai.log'),
     'baidu' => [...],
     'youtu' => [...],
     'face_plus' => [...],
@@ -89,6 +90,7 @@ $result = Entry::Baidu(config('ai'))->face->select('detect')->where(['image' => 
 - 在配置文件`params-local.php`添加
 ```php
     'ai'=>[
+        'log' => [...],
         'face_plus' => [...],
         'baidu' => [...],
         'youtu' => [...],
