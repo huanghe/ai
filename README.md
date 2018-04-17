@@ -98,7 +98,7 @@ $result = Entry::Baidu(config('ai'))->face->select('detect')->where(['image' => 
 ```
 - 一行代码调用人脸检测示例
 ```php
-$result = Entry::Baidu(Yii::$app->params['ai')->face->select('detect')->where(['image' => file_get_contents(__DIR__ . '/file/face_detect.jpeg'), 'id_card_side' => 'front'])->get();
+$result = Entry::Baidu(Yii::$app->params['ai'])->face->select('detect')->where(['image' => file_get_contents(__DIR__ . '/file/face_detect.jpeg'), 'id_card_side' => 'front'])->get();
 
 ```
 
