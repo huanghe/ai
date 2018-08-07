@@ -2,10 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
- * Date: 2017/12/11
- * Time: 20:28
+ * Date: 2018/8/6
+ * Time: 11:50
  */
-namespace AI\Baidu\Face;
+namespace AI\Baidu\Body;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
@@ -22,8 +22,8 @@ class ServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $app)
     {
-        isset($app['face']) || $app['face'] = function ($app) {
-            return new Face($app);
+        isset($app['body']) || $app['body'] = function ($app) {
+            return new Body($app);
         };
     }
 }

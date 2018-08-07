@@ -1,23 +1,26 @@
 <?php
 
-namespace AI\Tests\Baidu\Face;
+namespace AI\Tests\Baidu\Body;
 
 use AI\Entry;
 
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
- * Date: 2017/12/8
- * Time: 15:56
+ * Date: 2018/8/6
+ * Time: 12:14
  */
-class FaceTest extends \PHPUnit_Framework_TestCase
+class BodyTest extends \PHPUnit_Framework_TestCase
 {
-    //vendor/phpunit/phpunit/phpunit --testdox tests/Baidu/Face/FaceTest.php
+    //vendor/phpunit/phpunit/phpunit --testdox tests/Baidu/Body/BodyTest.php
     public function testGet()
     {
         $config = require __DIR__ . '/../../config/ai.php';
-//        $result = Entry::Baidu($config)->face->select('add')->where(['image' => file_get_contents(__DIR__ . '/../../file/face_detect.jpeg'), 'uid' => 'u001', 'user_info' => 'hahaxixi', 'group_id' => '1234'])->get();//身份证
-        $result = Entry::Baidu($config)->face->select('getlist')->where(['image' => file_get_contents(__DIR__ . '/../../file/face_detect.jpeg'), 'uid' => 'u001'])->get();//身份证
+        if (!file_exists(__DIR__ . '/../../file/body1.jpg'))//需要找一张人体识别的图片
+            return false;
+//        $result = Entry::Baidu($config)->body->select('analysis')->where(['image' => file_get_contents(__DIR__ . '/../../file/body1.jpg')])->get();//人体关键点识别
+        $result = Entry::Baidu($config)->body->select('attr')->where(['image' => file_get_contents(__DIR__ . '/../../file/body1.jpg'), 'type' =>'gender'])->get();//人体属性识别
+//        $result = Entry::Baidu($config)->body->select('num')->where(['image' => file_get_contents(__DIR__ . '/../../file/body1.jpg')])->get();//人流量统计
 
         var_dump($result);
         exit;

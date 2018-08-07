@@ -2,19 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
- * Date: 2017/12/11
+ * Date: 2018/8/6
  */
-namespace AI\Baidu\Face;
+namespace AI\Baidu\Body;
 
 use AI\Baidu\Client;
 use AI\Common\Exceptions\InvalidArgumentException;
 
 /**
- * Class Face.
+ * Class Body.
  *
  * @author hahaxixi <hahaxixicc@gmail.com>
  */
-class Face
+class Body
 {
     protected $client;
     /**
@@ -24,31 +24,8 @@ class Face
     /**
      * @var string
      */
-    protected $versionUrl = 'face/v2/';
-    /**
-     * @var array
-     */
-    protected $versionApi_1 = [
-        'add', 'update', 'delete', 'get',
-    ];
-    /**
-     * @var string 第二路由
-     */
-    protected $versionUrl_1 = 'face/v2/faceset/user/';
-    /**
-     * @var array
-     */
-    protected $versionApi_2 = [
-        'getlist', 'getusers', 'adduser', 'deleteuser'
-    ];
-    /**
-     * @var string 第三路由,人脸组
-     */
-    protected $versionUrl_2 = 'face/v2/faceset/group/';
-    /**
-     * @var string 人脸对比url后缀
-     */
-    private $matchEndPoint = 'match';
+    protected $versionUrl = 'image-classify/v1/';
+
     /**
      * @var : data的参数
      */
@@ -86,7 +63,7 @@ class Face
     /**
      *  author:HAHAXIXI
      *  created_at: 2017-12-11
-     *  updated_at: 2017-12-
+     *  updated_at: 2018-8-6
      * @param $url
      * @return bool
      * @throws InvalidArgumentException
@@ -94,70 +71,11 @@ class Face
      */
     protected function validate($url)
     {
-        // user_info参数 不超过256B
-        if (isset($this->params['user_info'])) {
+        $this->params['image'] = $this->getEncodeImages($this->params['image']);
 
-            if (strlen($this->params['user_info']) > 256) {
-                throw new InvalidArgumentException('user_info size error');//SDK103
-            }
-        }
-
-        // group_id参数 组成为字母/数字/下划线，且不超过48B
-        if (isset($this->params['group_id'])) {
-
-            if (is_array($this->params['group_id'])) {
-                $groupIds = $this->params['group_id'];
-            } else {
-                $groupIds = array(
-                    $this->params['group_id'],
-                );
-            }
-
-            foreach ($groupIds as $groupId) {
-                if (!preg_match('/^\w+$/', $groupId)) {
-                    throw new InvalidArgumentException('group_id format error');//SDK104
-                }
-
-                if (strlen($groupId) > 48) {
-                    throw new InvalidArgumentException('group_id size error');//SDK105
-                }
-            }
-
-            $this->params['group_id'] = implode(',', $groupIds);
-        }
-
-        // uid参数 组成为字母/数字/下划线，且不超过128B
-        if (isset($this->params['uid'])) {
-            if (!preg_match('/^\w+$/', $this->params['uid'])) {
-                throw new InvalidArgumentException('uid format error');//SDK106
-            }
-
-            if (strlen($this->params['uid']) > 128) {
-                throw new InvalidArgumentException('uid size error');//SDK107
-            }
-        }
-
-        if (isset($this->params['image'])) {
-            $this->params['image'] = $this->getEncodeImages($this->params['image']);
-
-            //编码后小于10m
-            if (empty($this->params['image']) || strlen($this->params['image']) >= 10 * 1024 * 1024) {
-                throw new InvalidArgumentException('image size error');//SDK100
-            }
-        } elseif (isset($this->params['images'])) {
-            $images = $this->getEncodeImages($this->params['images']);
-            $this->params['images'] = implode(',', $images);
-
-            // 人脸比对 编码后小于20m 其他 10m
-            if ($url == $this->matchEndPoint) {
-                if (count($images) < 2 || strlen($this->params['images']) >= 20 * 1024 * 1024) {
-                    throw new InvalidArgumentException('image size error');//SDK100
-                }
-            } else {
-                if (count($images) < 1 || strlen($this->params['images']) >= 10 * 1024 * 1024) {
-                    throw new InvalidArgumentException('image size error');//SDK100
-                }
-            }
+        //编码后大小不超过4M
+        if (empty($this->params['image']) || strlen($this->params['image']) >= 4 * 1024 * 1024) {
+            throw new InvalidArgumentException('image size error');//SDK100
         }
 
         return true;
@@ -193,25 +111,19 @@ class Face
     /**
      *  author:HAHAXIXI
      *  created_at: 2017-12-7
-     *  updated_at: 2017-12-8
+     *  updated_at: 2018-8-6
      * @param string $param
      * @return $this
+     * @throws InvalidArgumentException
      *  desc   :    指定调用的接口
      */
-    public function select($param = 'detect')
+    public function select($param = 'analysis')
     {
-        $allowOcrType = require __DIR__ . '/SupportType.php';
-        if (!in_array($param, $allowOcrType)) {
+        $allowType = require __DIR__ . '/SupportType.php';
+        if (!in_array($param, $allowType)) {
             throw new InvalidArgumentException('invalid argument:' . $param);
         }
-        if (in_array($param, $this->versionApi_1)) {
-            $versionUrl = $this->versionUrl_1;
-        } elseif (in_array($param, $this->versionApi_2)) {
-            $versionUrl = $this->versionUrl_2;
-        } else {
-            $versionUrl = $this->versionUrl;
-        }
-        $this->endPoint = $versionUrl . $param;
+        $this->endPoint = $this->versionUrl . 'body_' . $param;
         return $this;
     }
 
