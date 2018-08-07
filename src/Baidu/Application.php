@@ -24,5 +24,6 @@ class Application extends ServiceContainer
         Auth\ServiceProvider::class,
         Ocr\ServiceProvider::class,
         Face\ServiceProvider::class,
+        Body\ServiceProvider::class,
     ];
 }
