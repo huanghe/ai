@@ -25,5 +25,6 @@ class Application extends ServiceContainer
         Ocr\ServiceProvider::class,
         Face\ServiceProvider::class,
         Body\ServiceProvider::class,
+        ImageSearch\ServiceProvider::class,
     ];
 }
