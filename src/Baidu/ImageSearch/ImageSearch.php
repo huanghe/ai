@@ -2,20 +2,16 @@
 /**
  * Created by PhpStorm.
  * User: hahaxixi2017
- * Date: 2017/12/8
- * Time: 22:41
+ * Date: 2018/8/13
+ * Time: 12:26
  */
-namespace AI\Baidu\Ocr;
+
+namespace AI\Baidu\ImageSearch;
 
 use AI\Baidu\Client;
 use AI\Common\Exceptions\InvalidArgumentException;
 
-/**
- * Class Ocr.
- *
- * @author hahaxixi <hahaxixicc@gmail.com>
- */
-class Ocr
+class ImageSearch
 {
     protected $client;
     /**
@@ -25,15 +21,11 @@ class Ocr
     /**
      * @var string
      */
-    protected $versionUrl = 'ocr/v1/';
+    protected $versionUrl = 'image-classify/';
     /**
      * @var : data的参数
      */
     protected $params;
-    /**
-     * @var string,表格文字识别目前暂时不支持
-     */
-    private $tableResultEndPoint = 'form_ocr/request';
 
     public function __construct($app)
     {
@@ -42,18 +34,16 @@ class Ocr
 
     /**
      *  author:HAHAXIXI
-     *  created_at: 2017-12-7
-     *  updated_at: 2017-12-
+     *  created_at: 2018/8/13
+     *  updated_at: 2018/8/13
      * @return array|bool
-     *  desc   :    格式检查,检查url
+     * @throws  InvalidArgumentException
+     *  desc   :    格式检查
      */
     protected function validate()
     {
-        if ($this->endPoint === $this->tableResultEndPoint) {
-            return true;
-        }
-        // 支持url
-        if (isset($this->params['url'])) {
+        // 输入图片签名就不用检查image
+        if (isset($this->params['cont_sign'])) {
             return true;
         }
         $imageInfo = self::getImageInfo($this->params['image']);
@@ -106,19 +96,24 @@ class Ocr
 
     /**
      *  author:HAHAXIXI
-     *  created_at: 2017-12-7
-     *  updated_at: 2017-12-8
+     *  created_at: 2018-8-13
+     *  updated_at: 2018-8-
      * @param string $param
+     * @throws  InvalidArgumentException
      * @return $this
      *  desc   :    指定调用的接口
      */
-    public function select($param = 'idcard')
+    public function select($param = 'realtime_search/same_hq/add')
     {
         $allowOcrType = require __DIR__ . '/SupportType.php';
         if (!in_array($param, $allowOcrType)) {
             throw new InvalidArgumentException('invalid argument:' . $param);
         }
-        $this->endPoint = $this->versionUrl . $param;
+        if (strpos($param, '/same_hq/') !== false) {
+            $this->endPoint = $param;//相同图搜索
+        } else {
+            $this->endPoint = $this->versionUrl . $param;
+        }
         return $this;
     }
 
