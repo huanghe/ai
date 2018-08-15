@@ -1,3 +1,6 @@
+## Recent Releases
+- 增加百度图片搜索（2018-8-13）
+- 支持百度人体分析（2018-8-7）
 ## Recent Test
 - 所有API在2018-01-11通过测试
 ## Develop documents
