@@ -43,8 +43,8 @@
 	         'app_id' => '***',
 	         'secret_id' => '***',
 	         'secret_key' => '***',
-	         'user_id' => ****
-	    ]
+	         'user_id' => '*'
+	    ],
 	    'face_plus' => [
 	         'api_key' => '***',
 	         'api_secret' => '***',
