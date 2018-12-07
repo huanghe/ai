@@ -1,4 +1,5 @@
 ## Recent Releases
+- `v1.30`支持腾讯云人脸识别（2018-12-7）
 - `v1.20`支持百度图片搜索（2018-8-13）
 - `v1.10`支持百度人体分析（2018-8-7）
 ## Recent Test
@@ -15,9 +16,11 @@
 
  1.<a href="http://ai.baidu.com" target="_blank">百度AI开放平台</a>
 
- 2.<a href="https://open.youtu.qq.com" target="_blank">腾讯AI开放平台</a>
+ 2.<a href="https://open.youtu.qq.com" target="_blank">腾讯优图AI开放平台</a>
 
  3.<a href="https://www.faceplusplus.com.cn" target="_blank">FACE++AI开放平台</a>
+ 
+ 4.<a href="https://cloud.tencent.com/document/product/867" target="_blank">腾讯云人脸识别</a>
 
 
 ## SimpleTest
@@ -49,6 +52,11 @@
 	         'api_key' => '***',
 	         'api_secret' => '***',
 	    ],
+	    'qcloud' => [//腾讯云
+		'app_id' => '***',
+		'secret_id' => '***',
+		'secret_key' => '***',
+	    ]
 	];
 
 	```
