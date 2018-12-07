@@ -84,6 +84,8 @@ $result = Entry::Baidu($config)->face->select('detect')->where(['image' => file_
 $result = Entry::Youtu($config)->face->select('detectface')->where(['url' => 'http://open.youtu.qq.com/app/img/experience/face_img/face_06.jpg', 'mode' => 1])->get();
 //face++
 $result = Entry::FacePlus($config)->face->select('detect')->where(['image_file' =>__DIR__ . '/../../file/face_01.jpg' , 'return_attributes' => 'skinstatus'])->get();
+//腾讯云
+$result = Entry::Qcloud($config)->face->select('identify')->where(['image' => __DIR__ . '/../../file/face_01.jpg', 'appid' => $config['qcloud']['app_id'], 'group_ids' => ["tencent"]])->get();
 
 ```
 
