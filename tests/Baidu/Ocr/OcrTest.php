@@ -2,6 +2,7 @@
 namespace AI\Tests\Baidu\Ocr;
 
 use AI\Entry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Created by PhpStorm.
@@ -10,7 +11,7 @@ use AI\Entry;
  * Time: 15:56
  * 测试方法:vendor/phpunit/phpunit/phpunit --testdox tests/Baidu/Ocr/OcrTest.php
  */
-class OcrTest extends \PHPUnit_Framework_TestCase
+class OcrTest extends TestCase
 {
     /**
      * @var 配置

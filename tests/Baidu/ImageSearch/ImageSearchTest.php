@@ -2,6 +2,7 @@
 namespace AI\Tests\Baidu\ImageSearch;
 
 use AI\Entry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Created by PhpStorm.
@@ -9,7 +10,7 @@ use AI\Entry;
  * Date: 2018/8/13
  * Time: 16:26
  */
-class ImageSearchTest extends \PHPUnit_Framework_TestCase
+class ImageSearchTest extends TestCase
 {
     /**
      * @array 配置
