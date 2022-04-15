@@ -3,6 +3,7 @@
 namespace AI\Tests\Youtu\Ocr;
 
 use AI\Entry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Created by PhpStorm.
@@ -13,7 +14,7 @@ use AI\Entry;
  * 参数image为图片本地地址
  * url为图片网络地址
  */
-class OcrTest extends \PHPUnit_Framework_TestCase
+class OcrTest extends TestCase
 {
     public $config;
 

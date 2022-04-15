@@ -3,6 +3,7 @@
 namespace AI\Tests\FacePlus\Face;
 
 use AI\Entry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Created by PhpStorm.
@@ -10,7 +11,7 @@ use AI\Entry;
  * Date: 2017/12/8
  * Time: 15:56
  */
-class FaceTest extends \PHPUnit_Framework_TestCase
+class FaceTest extends TestCase
 {
     /**
      * @var 配置
