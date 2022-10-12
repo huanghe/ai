@@ -5,7 +5,7 @@
 ## Recent Test
 - 所有API在2018-01-11通过测试
 ## Develop documents
-<a href="http://blog.hahaxixi.cc/2017/12/27/AI-API/" target="_blank">开发文档</a>
+<a href="https://huanghe.github.io/2017/12/27/AI-API/" target="_blank">开发文档</a>
 ## Feature
 
 - 统一AI平台SDK调用方法；
